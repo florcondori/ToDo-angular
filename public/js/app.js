@@ -6,9 +6,9 @@
 		
 		$scope.addTodo = function(){
 			$scope.newTodo = {
-				'body' : $scope.body,
+				body : $scope.body,
 				completed : false,
-				date : new Date(),
+				dateInicio : new Date(),
 				editable : false
 			};
 			
@@ -40,11 +40,8 @@
 					}else{
 						alert("llenar campo");
 					}
-					
-					console.log(todo);					
 				}
 			});			
-			console.log($scope.todos);
 		};
 
 	}]);
