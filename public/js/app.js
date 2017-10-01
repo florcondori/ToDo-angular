@@ -18,7 +18,8 @@
 		};
 
 		$scope.removeTodo = function(index){
-			$scope.todos.splice(index, 1);
+			const resp = confirm("eliminar esta Tarea");
+			if(resp) $scope.todos.splice(index, 1);
 		};
 
 		$scope.showBtnSave = function(index){
@@ -31,14 +32,19 @@
 		};
 
 		$scope.saveChange = function(index){
-
+	
 			$scope.todos.forEach(function(todo, i){
 				if(i == index){
-					todo['body'] = $scope.changed;
-					todo['editable'] = false;
-					console.log(todo.body);					
+					if(todo.body !== ""){
+						todo['editable'] = false;
+					}else{
+						alert("llenar campo");
+					}
+					
+					console.log(todo);					
 				}
-			});
+			});			
+			console.log($scope.todos);
 		};
 
 	}]);

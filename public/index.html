@@ -14,17 +14,19 @@
 			</form>
 
 			<div>
-				<h2>Tareas</h2>
+				<h1>ToDo List</h1>
 				<ul>
-					<li ng-repeat="todo in todos" >
-					<input type="checkbox" ng-model="todo.completed" />
-					<span ng-hide="todo.editable" ng-class="{'completed' : todo.completed}">
-					{{todo.body}}
-					</span>
-					<input ng-show="todo.editable" type="text" ng-model="changed" />
-					<a ng-click="removeTodo($index)" href="#" >eliminar</a>
-					<a ng-hide="todo.editable" ng-click="showBtnSave($index)" href="#" >editar</a>
-					<a ng-show="todo.editable" ng-click="saveChange($index)" href="#">guardar</a>
+					<li ng-repeat="todo in todos">
+						<input type="checkbox" ng-model="todo.completed" />
+						<span ng-hide="todo.editable" ng-class="{'completed' : todo.completed}">
+						{{todo.body}}
+						</span>
+						<input ng-show="todo.editable" type="text" ng-model="todo.body" />
+						<div>
+							<a ng-click="removeTodo($index)" href="#" >eliminar</a>
+							<a ng-hide="todo.editable" ng-click="showBtnSave($index)" href="#" >editar</a>
+							<a ng-show="todo.editable" ng-click="saveChange($index)" href="#">guardar</a>
+						</div>						
 					</li>
 				</ul>
 				<div>
