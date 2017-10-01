@@ -3,26 +3,35 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="css/main.css">
 		<title>ToDo</title>
 	</head>
 	<body>
-	<div ng-controller = "TodoController as todoCtrl">
-		<form name="todoForm" ng-submit="todoCtrl.addTodo()">
-			<input type="text" ng-model="todoCtrl.todo.body">
-			<button type="submit">agregar</button>
-		</form>
+		<div ng-controller = "TodoController">
+			<form name="todoForm" ng-submit="addTodo()">
+				<input type="text" ng-model="body" required />
+				<button type="submit" ng-disabled="!todoForm.$valid">agregar</button>
+			</form>
 
-		<div>
-			<h2>Tareas</h2>
-			<ul>
-				<li ng-repeat="todo in todoCtrl.todos">{{todo.body}} {{todo.date | date : 'medium'}}
-				<a href="#">eliminar</a>
-				<a href="#">editar</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-		
+			<div>
+				<h2>Tareas</h2>
+				<ul>
+					<li ng-repeat="todo in todos" >
+					<input type="checkbox" ng-model="todo.completed" />
+					<span ng-hide="todo.editable" ng-class="{'completed' : todo.completed}">
+					{{todo.body}}
+					</span>
+					<input ng-show="todo.editable" type="text" ng-model="changed" />
+					<a ng-click="removeTodo($index)" href="#" >eliminar</a>
+					<a ng-hide="todo.editable" ng-click="showBtnSave($index)" href="#" >editar</a>
+					<a ng-show="todo.editable" ng-click="saveChange($index)" href="#">guardar</a>
+					</li>
+				</ul>
+				<div>
+					<h2>Completadas</h2>
+				</div>
+			</div>
+		</div>		
 		
 		<script src="js/lib/angular.min.js"></script>
 		<script src="js/app.js"></script>
